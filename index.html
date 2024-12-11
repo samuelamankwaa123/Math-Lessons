@@ -14,6 +14,8 @@
         .resources-list { margin-top: 10px; }
         .resources-list li { margin-bottom: 10px; }
         .premium { color: red; font-weight: bold; }
+        .payment-section { margin-top: 20px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; }
+        .payment-section h3 { color: #4CAF50; }
     </style>
 </head>
 <body>
@@ -29,6 +31,7 @@
     <div class="content">
         <h2>About</h2>
         <p>Hi, I'm Samuel Amankwaa. Welcome to my mathematics platform where learning math is fun and interactive.</p>
+
         <h2 id="lessons">Lessons</h2>
         <ul>
             <li><a href="#">Algebra Basics</a></li>
@@ -36,23 +39,26 @@
             <li><a href="#">Calculus Essentials</a></li>
             <li><a href="#">High School Math</a></li>
         </ul>
+
         <h2 id="resources">Resources</h2>
         <p>Download worksheets and interactive tools to practice your skills.</p>
         <ul class="resources-list">
-            <h2 id="resources">Resources</h2>
             <li><a href="https://raw.githubusercontent.com/samuelamankwaa123/Math-Lessons/main/free_algebra.pdf" target="_blank">Download Free Algebra PDF</a></li>
             <li><a href="https://raw.githubusercontent.com/samuelamankwaa123/Math-Lessons/main/free_geometry.pdf" target="_blank">Download Free Geometry PDF</a></li>
-          <!-- <li><a href="path/to/free-algebra-basics.pdf" download>Download Free Algebra Basics PDF</a></li>
-        --> <!--<li><a href="path/to/free-geometry-fundamentals.pdf" download>Download Free Geometry Fundamentals PDF</a></li>
-        --><li class="premium">Premium Resource: <a href="path/to/premium-calculus-essentials.pdf" download>Buy Calculus Essentials PDF</a></li>
+            <li class="premium">Premium Resource: Homework Sheets</li>
         </ul>
-        <p><strong>Monetize:</strong> To access premium resources, you can purchase them below:</p>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>
+
+        <div class="payment-section">
+            <h3>Purchase Premium Homework Sheets</h3>
+            <p>To access premium homework sheets, you can purchase them below:</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="QKE92J49GWUCJ" />
+                <input type="hidden" name="currency_code" value="EUR" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+            </form>
+        </div>
+
         <h2 id="contact">Contact</h2>
         <p>Email: samankwaa49@yahoo.com</p>
     </div>
