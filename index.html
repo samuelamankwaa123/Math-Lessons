@@ -16,6 +16,10 @@
         .premium { color: red; font-weight: bold; }
         .payment-section { margin-top: 20px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; }
         .payment-section h3 { color: #4CAF50; }
+        .lesson-example { margin-top: 20px; padding: 15px; background: #f1f1f1; border: 1px solid #ccc; border-radius: 5px; }
+        .lesson-example h3 { color: #4CAF50; }
+        .premium-games-section { margin-top: 20px; padding: 15px; background: #ffe6e6; border: 1px solid #ff9999; border-radius: 5px; display: none; }
+        .premium-games-section h3 { color: #ff4d4d; }
     </style>
 </head>
 <body>
@@ -30,33 +34,57 @@
     </nav>
     <div class="content">
         <h2>About</h2>
-        <p>Hi, I'm Samuel Amankwaa. Welcome to my mathematics platform where learning math is fun and interactive.</p>
+        <p>Hi, welcome to the mathematics platform where learning math is fun and interactive.</p>
 
         <h2 id="lessons">Lessons</h2>
-        <ul>
-            <li><a href="#">Algebra Basics</a></li>
-            <li><a href="#">Geometry Fundamentals</a></li>
-            <li><a href="#">Calculus Essentials</a></li>
-            <li><a href="#">High School Math</a></li>
-        </ul>
 
-        <h2 id="resources">Resources</h2>
+        <!-- Interactive Games Section -->
+        <div class="lesson-example">
+            <h3>Interactive Algebra Games</h3>
+            <div id="algebraGames"></div>
+        </div>
+
+        <div class="lesson-example">
+            <h3>Geometry Puzzles</h3>
+            <ul>
+                <li><a href="#">Identify the shape with 4 equal sides.</a></li>
+                <li><a href="#">Find the area of a triangle with base 10cm and height 5cm.</a></li>
+                <li><a href="#">Match the shapes to their names.</a></li>
+            </ul>
+        </div>
+
+        <h2 id="resources">Free Resources</h2>
         <p>Download worksheets and interactive tools to practice your skills.</p>
         <ul class="resources-list">
             <li><a href="https://raw.githubusercontent.com/samuelamankwaa123/Math-Lessons/main/free_algebra.pdf" target="_blank">Download Free Algebra PDF</a></li>
             <li><a href="https://raw.githubusercontent.com/samuelamankwaa123/Math-Lessons/main/free_geometry.pdf" target="_blank">Download Free Geometry PDF</a></li>
-            <li class="premium">Premium Resource: Homework Sheets</li>
         </ul>
 
+        <!-- Premium Interactive Games Section -->
+        <div class="premium-games-section" id="premiumGamesSection">
+            <h3>Premium Interactive Games</h3>
+            <div id="premiumGames"></div>
+        </div>
+
         <div class="payment-section">
-            <h3>Purchase Premium Homework Sheets</h3>
-            <p>To access premium homework sheets, you can purchase them below:</p>
+            <h3>Purchase Premium Access</h3>
+            <p>To access premium interactive games, make a payment below:</p>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_s-xclick" />
                 <input type="hidden" name="hosted_button_id" value="QKE92J49GWUCJ" />
                 <input type="hidden" name="currency_code" value="EUR" />
+                <input type="hidden" name="return" value="https://yourwebsite.com/thank-you.html">
                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
             </form>
+        </div>
+
+        <!-- Randomized Exercises Section -->
+        <div class="lesson-example">
+            <h3>Randomized Math Exercises</h3>
+            <p id="exerciseQuestion"></p>
+            <input type="text" id="exerciseAnswer" placeholder="Your Answer">
+            <button onclick="checkExerciseAnswer()">Submit</button>
+            <p id="exerciseFeedback"></p>
         </div>
 
         <h2 id="contact">Contact</h2>
@@ -65,5 +93,88 @@
     <footer>
         &copy; 2024 SL Math Lessons. All Rights Reserved.
     </footer>
+
+    <script>
+        // Generate Algebra Games
+        const algebraGamesDiv = document.getElementById("algebraGames");
+        for (let i = 1; i <= 20; i++) {
+            const equation = `${Math.floor(Math.random() * 10) + 1}x + ${Math.floor(Math.random() * 20)} = ${Math.floor(Math.random() * 50) + 10}`;
+            const correctAnswer = Math.floor(Math.random() * 10);
+
+            const gameHTML = `
+                <div>
+                    <p>Solve: <strong>${equation}</strong></p>
+                    <input type="text" id="algebraGame${i}" placeholder="Your Answer">
+                    <button onclick="checkAlgebraGame(${i}, ${correctAnswer})">Submit</button>
+                    <p id="algebraGame${i}Feedback"></p>
+                </div>
+            `;
+            algebraGamesDiv.innerHTML += gameHTML;
+        }
+
+        // Randomized Exercises
+        const exerciseCount = 40;
+        let currentExercise = 1;
+        let num1, num2, operator;
+
+        function generateExercise() {
+            const operators = ['+', '-', '*', '/', '^'];
+            operator = operators[Math.floor(Math.random() * operators.length)];
+            num1 = Math.floor(Math.random() * 20) - 10; // Allow negative numbers
+            num2 = Math.floor(Math.random() * 20) - 10;
+
+            if (operator === '^') {
+                num1 = Math.floor(Math.random() * 10);
+                num2 = Math.floor(Math.random() * 3) + 2;
+            }
+
+            document.getElementById("exerciseQuestion").textContent = `Exercise ${currentExercise}: What is ${num1} ${operator} ${num2}?`;
+        }
+
+        function checkExerciseAnswer() {
+            const userAnswer = document.getElementById("exerciseAnswer").value;
+            const feedback = document.getElementById("exerciseFeedback");
+            let correctAnswer;
+
+            switch (operator) {
+                case '+':
+                    correctAnswer = num1 + num2;
+                    break;
+                case '-':
+                    correctAnswer = num1 - num2;
+                    break;
+                case '*':
+                    correctAnswer = num1 * num2;
+                    break;
+                case '/':
+                    correctAnswer = (num2 !== 0) ? parseFloat((num1 / num2).toFixed(2)) : 'undefined';
+                    break;
+                case '^':
+                    correctAnswer = Math.pow(num1, num2);
+                    break;
+            }
+
+            if (parseFloat(userAnswer) === correctAnswer) {
+                feedback.textContent = "Correct! Great job!";
+                feedback.style.color = "green";
+
+                if (currentExercise < exerciseCount) {
+                    currentExercise++;
+                    generateExercise();
+                    document.getElementById("exerciseAnswer").value = "";
+                } else {
+                    document.getElementById("exerciseQuestion").textContent = "All exercises completed! Well done!";
+                    document.getElementById("exerciseAnswer").style.display = "none";
+                    document.querySelector("button[onclick='checkExerciseAnswer()']").style.display = "none";
+                }
+
+            } else {
+                feedback.textContent = "Incorrect. Try again!";
+                feedback.style.color = "red";
+            }
+        }
+
+        generateExercise();
+    </script>
 </body>
 </html>
